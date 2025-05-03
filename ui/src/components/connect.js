@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserProvider, Contract } from 'ethers'
 import RCToken from './RCToken.json'
+import Alert from './alert'
 const contractAddress = "0x9FcEEf40DcE47c4D259e4A5387Fd53b1e37Df628"
 
 
@@ -17,6 +18,8 @@ export function ConnectWallet() {
             return
         }
         try {
+            setLoaders(true)
+            if (wallet) {Alert('Wallet already connected!', 'warning'); return;}
             const provider = new BrowserProvider(window.ethereum)
             const signer = await provider.getSigner()
             const address = await signer.getAddress()
@@ -24,8 +27,12 @@ export function ConnectWallet() {
             setWallet(address)
             setContract(contracts)
             setProvider(provider)
+            Alert('Wallet connected successfully!', 'success')
         } catch (error) {
+            Alert('Wallet connection failed!', 'error')
             console.error('Error connecting to wallet:', error)
+        }finally {
+            setLoaders(false)
         }
     }
     return { Connect, contract, wallet, provider, loaders }

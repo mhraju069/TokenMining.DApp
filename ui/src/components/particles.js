@@ -18,11 +18,11 @@ export default function Particles() {
                     "type": "circle",
                     "stroke": {
                         "width": 0,
-                        "color": "#000000"
+                        "color": "#3E66F9"
                     }
                 },
                 "opacity": {
-                    "value": 0.3,
+                    "value": 0.8,
                     "random": true,
                     "anim": {
                         "enable": true,
@@ -36,17 +36,17 @@ export default function Particles() {
                     "random": true,
                     "anim": {
                         "enable": true,
-                        "speed": 2,
+                        "speed": 1,
                         "size_min": 0.1,
-                        "sync": false
+                        "sync": true
                     }
                 },
                 "line_linked": {
                     "enable": true,
                     "distance": 150,
-                    "color": "#4f46e5",
-                    "opacity": 0.2,
-                    "width": 1
+                    "color": "#6081FF",
+                    "opacity": 0.8,
+                    "width": 0.5
                 },
                 "move": {
                     "enable": true,

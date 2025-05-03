@@ -50,19 +50,19 @@ header {
 }
 
 .logo-icon {
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     background: linear-gradient(45deg, var(--primary), var(--electric));
-    border-radius: 12px;
+    border-radius: 50%;
     display: grid;
     place-items: center;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 800;
     background: linear-gradient(45deg, var(--primary), var(--electric));
     -webkit-background-clip: text;
@@ -112,7 +112,7 @@ header {
 .mining-card {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 24px;
-    padding: 2rem;
+    padding: 1rem;
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -132,26 +132,29 @@ header {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(79, 70, 229, 0.1),
-        transparent
-    );
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(79, 70, 229, 0.1),
+            transparent);
     transform: rotate(45deg);
     animation: shine 6s infinite;
 }
 
 @keyframes shine {
-    0% { transform: rotate(45deg) translateX(-100%); }
-    100% { transform: rotate(45deg) translateX(100%); }
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: .5rem;
 }
 
 .card-title {
@@ -167,52 +170,79 @@ header {
     background: linear-gradient(45deg, var(--primary), var(--electric));
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    /* color: transparent; */
     letter-spacing: -1px;
+    z-index: 5;
 }
 
 .progress-container {
-    height: 8px;
+    width: 100%;
+    position: relative;
+    height: 4rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    margin: 2rem 0;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
-    width: 1%;
     background: linear-gradient(90deg, var(--primary), var(--electric));
     border-radius: 10px;
-    position: relative;
-    animation: pulse 2s infinite;
+    transition: width 0.3s ease-in-out;
+    z-index: 1;
 }
 
+.card-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: white;
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-weight: 750;
+    font-family: cursive;
+    pointer-events: none;
+    margin: 0;
+    /* color: transparent; */
+}
+
+
+
+
 @keyframes pulse {
-    0% { opacity: 0.8; }
-    50% { opacity: 1; }
-    100% { opacity: 0.8; }
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
 }
 
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 1rem;
+    /* margin-top: 1%; */
 }
 
 .stat-item {
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 1.5rem;
+    border-radius: 10px;
+    padding: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.1);
+    height: 100px;
 }
 
 .stat-label {
@@ -226,7 +256,7 @@ header {
     font-weight: 700;
 }
 
-.action-btn {
+/* .action-btn {
     width: 100%;
     padding: 1rem;
     border-radius: 12px;
@@ -240,26 +270,24 @@ header {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-}
+} */
 
 .primary-btn {
-    background: linear-gradient(45deg, var(--primary), var(--electric));
-    color: white;
+    /* background: linear-gradient(45deg, var(--primary), var(--electric)); */
+    display: inline-flex;
+    /* important fix */
+    color: rgba(255, 255, 255, 0);
+    transition: all 0.3s ease;
+    margin-top: 7rem;
 }
 
 .primary-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+    box-shadow: 0 10px 25px rgba(78, 70, 229, 0.288);
 }
 
-.secondary-btn {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-}
 
-.secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
+
 
 .mining-status {
     display: flex;
@@ -277,10 +305,26 @@ header {
     box-shadow: 0 0 10px var(--electric);
 }
 
+.status-container .pause {
+    background: red;
+    animation: blink 1.5s infinite;
+}
+
 @keyframes blink {
-    0% { opacity: 0.5; box-shadow: 0 0 5px var(--electric); }
-    50% { opacity: 1; box-shadow: 0 0 15px var(--electric); }
-    100% { opacity: 0.5; box-shadow: 0 0 5px var(--electric); }
+    0% {
+        opacity: 0.5;
+        box-shadow: 0 0 5px var(--electric);
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 15px var(--electric);
+    }
+
+    100% {
+        opacity: 0.5;
+        box-shadow: 0 0 5px var(--electric);
+    }
 }
 
 .status-text {
@@ -288,11 +332,20 @@ header {
     color: rgba(255, 255, 255, 0.8);
 }
 
+.status-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 /* Modern Mining Circle */
 .mining-circle-container {
+    margin-top: 5rem;
     position: relative;
     height: 280px;
-    margin: 2rem 0;
+    /* margin: 2rem 0; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -306,9 +359,22 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background: rgba(15, 23, 42, 0.5); */
-    /* box-shadow: 0 0 50px rgba(79, 70, 229, 0.3); */
+    background: rgba(15, 23, 42, 0.5);
+    box-shadow: 0 0 50px rgba(79, 70, 229, 0.3);
 }
+
+.mining-circle img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    z-index: 2;
+    position: absolute;
+}
+
+.mining-circle img:hover .circle-core {
+    display: flex;
+}
+
 
 .circle-glow {
     position: absolute;
@@ -320,14 +386,19 @@ header {
 }
 
 @keyframes pulse-glow {
-    0% { opacity: 0.3; }
-    100% { opacity: 0.7; }
+    0% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
 }
 
 .circle-ring {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 160%;
+    height: 160%;
     border-radius: 50%;
     border: 2px solid transparent;
     border-top-color: var(--primary);
@@ -336,8 +407,8 @@ header {
 }
 
 .circle-ring:nth-child(2) {
-    width: 80%;
-    height: 80%;
+    width: 140%;
+    height: 140%;
     border-top-color: var(--electric);
     border-right-color: var(--secondary);
     animation-direction: reverse;
@@ -352,14 +423,19 @@ header {
 }
 
 @keyframes rotate-ring {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .circle-core {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary), var(--electric));
     display: flex;
@@ -371,12 +447,24 @@ header {
     z-index: 2;
     animation: pulse-core 4s infinite alternate;
     cursor: pointer;
+    z-index: 3;
 }
 
 @keyframes pulse-core {
-    0% { transform: scale(1); box-shadow: 0 0 30px rgba(79, 70, 229, 0.7); }
-    50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(79, 70, 229, 0.9); }
-    100% { transform: scale(1); box-shadow: 0 0 30px rgba(79, 70, 229, 0.7); }
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(79, 70, 229, 0.7);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px rgba(79, 70, 229, 0.9);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(79, 70, 229, 0.7);
+    }
 }
 
 .data-particles {
@@ -384,6 +472,7 @@ header {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    /* z-index: 3; */
 }
 
 .data-particle {
@@ -397,10 +486,23 @@ header {
 }
 
 @keyframes float-particle {
-    0% { transform: translate(0, 0) scale(1); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
 }
 
 .history-card {
@@ -412,11 +514,15 @@ header {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     margin-top: 2rem;
     transition: transform 0.3s ease;
+
 }
 
-.history-card:hover {
-    transform: translateY(-5px);
+.history-grid {
+   max-height: 220px;
+    overflow-y: auto;
 }
+
+
 
 .history-header {
     display: flex;
@@ -452,12 +558,6 @@ header {
     transition: all 0.3s ease;
 }
 
-.history-item:hover {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 1rem;
-    border-radius: 12px;
-    transform: translateX(5px);
-}
 
 .history-item:last-child {
     border-bottom: none;
@@ -483,6 +583,10 @@ header {
     background: rgba(16, 185, 129, 0.2);
     color: var(--secondary);
 }
+.status-incompleted {
+    background: rgba(185, 78, 16, 0.2);
+    color: orangered;
+}
 
 .status-pending {
     background: rgba(245, 158, 11, 0.2);
@@ -493,13 +597,122 @@ header {
     .main-content {
         grid-template-columns: 1fr;
     }
-    
+
     .card-value {
         font-size: 2.2rem;
     }
-    
-    .mining-circle {
+
+    /* .mining-circle {
         width: 180px;
         height: 180px;
+    } */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* From Uiverse.io by Smit-Prajapati */ 
+
+/* Dark overlay that covers entire screen */
+/* From Uiverse.io by alexruix */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.801);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: all !important;
+}
+
+.loader {
+    --ballcolor: #f2f2f2;
+    --shadow: 0px 0 #ffffff00;
+    --shadowcolor: #ffffff00;
+    width: 10px;
+    height: 10px;
+    left: -120px;
+    border-radius: 50%;
+    position: relative;
+    color: var(--ballcolor);
+    animation: shadowRolling 2s linear infinite;
+}
+
+@keyframes shadowRolling {
+
+    0% {
+        box-shadow: var(--shadow),
+            var(--shadow),
+            var(--shadow),
+            var(--shadow);
+    }
+
+    12% {
+        box-shadow: 100px 0 var(--ballcolor),
+            var(--shadow),
+            var(--shadow),
+            var(--shadow);
+    }
+
+    25% {
+        box-shadow: 110px 0 var(--ballcolor),
+            100px 0 var(--ballcolor),
+            var(--shadow),
+            var(--shadow);
+    }
+
+    36% {
+        box-shadow: 120px 0 var(--ballcolor),
+            110px 0 var(--ballcolor),
+            100px 0 var(--ballcolor),
+            var(--shadow);
+    }
+
+    50% {
+        box-shadow: 130px 0 var(--ballcolor),
+            120px 0 var(--ballcolor),
+            110px 0 var(--ballcolor),
+            100px 0 var(--ballcolor);
+    }
+
+    62% {
+        box-shadow: 200px 0 var(--shadowcolor),
+            130px 0 var(--ballcolor),
+            120px 0 var(--ballcolor),
+            110px 0 var(--ballcolor);
+    }
+
+    75% {
+        box-shadow: 200px 0 var(--shadowcolor),
+            200px 0 var(--shadowcolor),
+            130px 0 var(--ballcolor),
+            120px 0 var(--ballcolor);
+    }
+
+    87% {
+        box-shadow: 200px 0 var(--shadowcolor),
+            200px 0 var(--shadowcolor),
+            200px 0 var(--shadowcolor),
+            130px 0 var(--ballcolor);
+    }
+
+    100% {
+        box-shadow: 200px 0 var(--shadowcolor),
+            200px 0 var(--shadowcolor),
+            200px 0 var(--shadowcolor),
+            200px 0 var(--shadowcolor);
     }
 }
+
+
