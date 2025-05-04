@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TokenMining.DApp/static/css/main.c6f35f61.css",
-    "main.js": "/TokenMining.DApp/static/js/main.86764203.js",
+    "main.css": "/TokenMining.DApp/static/css/main.93ef034b.css",
+    "main.js": "/TokenMining.DApp/static/js/main.7ff40fe1.js",
     "static/js/453.63c4db86.chunk.js": "/TokenMining.DApp/static/js/453.63c4db86.chunk.js",
     "index.html": "/TokenMining.DApp/index.html",
-    "main.c6f35f61.css.map": "/TokenMining.DApp/static/css/main.c6f35f61.css.map",
-    "main.86764203.js.map": "/TokenMining.DApp/static/js/main.86764203.js.map",
+    "main.93ef034b.css.map": "/TokenMining.DApp/static/css/main.93ef034b.css.map",
+    "main.7ff40fe1.js.map": "/TokenMining.DApp/static/js/main.7ff40fe1.js.map",
     "453.63c4db86.chunk.js.map": "/TokenMining.DApp/static/js/453.63c4db86.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c6f35f61.css",
-    "static/js/main.86764203.js"
+    "static/css/main.93ef034b.css",
+    "static/js/main.7ff40fe1.js"
   ]
 }
