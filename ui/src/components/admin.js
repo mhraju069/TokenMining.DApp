@@ -22,7 +22,8 @@ export default function Admin(props) {
             console.log("change time to", time)
             Alert(`Time change to ${intervals}H successfully!`, "success")
 
-        } catch (error) { console.log(error) 
+        } catch (error) {
+            console.log(error)
             Alert(`Time change failed!`, "error")
         }
         finally {
@@ -38,7 +39,8 @@ export default function Admin(props) {
             setShowForm(false)
             Alert(`Rate change to ${miningRate}RC successfully!`, "success")
 
-        } catch (error) { console.log(error) 
+        } catch (error) {
+            console.log(error)
             Alert(`Rate change failed!`, "error")
         }
         finally {
@@ -53,12 +55,10 @@ export default function Admin(props) {
             const oldrate = await contract.mineRate()
 
             setOldRate(Number(oldrate.toString()))
-            setOldTime(Number(oldtime.toString())/3600)
+            setOldTime(Number(oldtime.toString()) / 60)
         }
         fetchData();
     }, [contract, intervals])
-
-
 
     return (
         <>
@@ -82,14 +82,15 @@ export default function Admin(props) {
 
                     <form onSubmit={ChangeInterval}>
                         <div className="input-group">
-                            <label htmlFor="wallet-address" className="input-label">Enter new interval time (Hour).</label>
+                            <label htmlFor="wallet-address" className="input-label">Enter new interval time (Minutes).</label>
                             <input
+                                required
                                 type="text"
                                 id="wallet-address"
                                 className="input-field"
                                 step='1'
                                 min='1'
-                                placeholder={`Current Time: ${oldTime}H`}
+                                placeholder={`Current Time: ${oldTime}Min`}
                                 onChange={(e) => setIntervals(e.target.value)}
                             />
                         </div>
@@ -114,10 +115,11 @@ export default function Admin(props) {
                         <div className="input-group">
                             <label htmlFor="wallet-address" className="input-label">Enter new interval time (Hour).</label>
                             <input
+                                required
                                 type="text"
                                 id="wallet-address"
                                 className="input-field"
-                                placeholder= {`Current Rate: ${oldRate}RC`}
+                                placeholder={`Current Rate: ${oldRate}RC`}
                                 onChange={(e) => setMiningRate(e.target.value)}
                             />
                         </div>

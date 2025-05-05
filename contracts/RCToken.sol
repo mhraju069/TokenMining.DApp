@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract RCToken is ERC20, Ownable {
     uint public mineRate = 1;
-    uint public interval = 24 hours;
+    uint public interval = 5 minutes;
     mapping(address => uint) public lastMined;
     mapping(address => uint) public totalMined;
     mapping(address => bool) public isMining;
@@ -32,7 +32,7 @@ contract RCToken is ERC20, Ownable {
         require(
             lastMined[msg.sender] == 0 ||
                 block.timestamp > lastMined[msg.sender] + interval,
-            "Wait 24H for next mine"
+            "Minig isn't end yet"
         );
         _mint(msg.sender, mineRate * 10 ** decimals());
         totalMined[msg.sender] += mineRate * 10 ** decimals();
@@ -47,6 +47,6 @@ contract RCToken is ERC20, Ownable {
     }
 
     function ChangeInterval(uint _interval) public onlyOwner {
-        interval = _interval * 1 hours;
+        interval = _interval * 1 minutes;
     }
 }

@@ -39,19 +39,20 @@ export default function Stats(props) {
             const joinDate = await contract.joinDate(wallet);
             const currentDate = Math.floor(Date.now() / 1000);
             const elapsedTime = currentDate - Number(joinDate.toString());
-            const elapsedTimeInDays = elapsedTime / 86400;
+            const time = elapsedTime / intervals;   
 
-            setAccuracy(((Number(mineCount.toString()) / elapsedTimeInDays) * 100).toFixed(2));
+            setAccuracy(((Number(mineCount.toString()) / time) * 100).toFixed(2));
         }
         calculatePerformance();
     }, [mining,contract, wallet]);
 
+    //Fetch events data 
     useEffect(() => {
         async function History() {
             if (!contract || !wallet) return;
             setLoading(true);
             const history = await contract.queryFilter(contract.filters.minelog(wallet));
-            setHistory(history.reverse());
+            setHistory(history.reverse().slice(-10));
             setLoading(false);
 
         }
@@ -66,12 +67,13 @@ export default function Stats(props) {
             contract.off("minelog", (History))
         }
     }, [mining,contract, wallet])
-
+    
+    //Fetch data
     useEffect(() => {
             const fetchData = async () => {
                 if (!contract) return;
                 const now = await contract.interval()
-                setIntervals(Number(now.toString())/3600)
+                setIntervals(Number(now.toString())/60)
             }
             fetchData();
         }, [contract, wallet])
@@ -87,7 +89,7 @@ export default function Stats(props) {
                 <div className="stats-grid">
                     <div className="stat-item">
                         <div className="stat-label">Mining Rate</div>
-                        <div className="stat-value">{miningRate} RC/{intervals}H</div>
+                        <div className="stat-value">{miningRate} RC/{intervals}Min</div>
                     </div>
                     <div className="stat-item">
                         <div className="stat-label">Token Balance</div>
@@ -99,7 +101,7 @@ export default function Stats(props) {
                     </div>
                     <div className="stat-item">
                         <div className="stat-label">Accuracy</div>
-                        <div className="stat-value">{(accuracy/3).toFixed(2)}%</div>
+                        <div className="stat-value">{accuracy}%</div>
                     </div>
                 </div>
             </div>

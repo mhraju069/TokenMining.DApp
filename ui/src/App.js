@@ -22,7 +22,7 @@ function App() {
         <Nav Connect={Connect} wallet={wallet} loaders={loaders} />
         
         {!wallet ? (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '70vh' }}>
             <h1 style={{fontFamily:'cursive'}} >Welcome to RC Token</h1>
             <h2 style={{fontFamily:'cursive'}}>Connect Your Wallet to Start Mining.</h2>
           </div>) 

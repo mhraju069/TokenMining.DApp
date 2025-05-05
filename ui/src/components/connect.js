@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { BrowserProvider, Contract } from 'ethers'
 import RCToken from './RCToken.json'
 import Alert from './alert'
-const contractAddress = "0x9FcEEf40DcE47c4D259e4A5387Fd53b1e37Df628"
+const contractAddress = "0x696FeBbBA2ef0d627b109bBee26654b977D4875F"
 
 
 export function ConnectWallet() {
